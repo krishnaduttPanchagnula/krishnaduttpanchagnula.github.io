@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkwebsite=globalThis.webpackChunkwebsite||[]).push([[8875],{5633(t){t.exports=JSON.parse('{"metadata":{"permalink":"/posts","page":1,"postsPerPage":18,"totalPages":1,"totalCount":18,"blogDescription":"Latest blog posts by Krishnadutt Panchagnula","blogTitle":"Blog"}}')}}]);
