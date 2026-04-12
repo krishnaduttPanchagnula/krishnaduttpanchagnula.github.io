@@ -27,12 +27,15 @@ jobs:
       - name: Sync HackerNoon Blogs
         run: python3 scripts/sync_hackernoon.py
 
+      - name: Generate Blog Index
+        run: python3 scripts/generate-blog-index.py
+
       - name: Commit and Push new blogs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/*.md
-          git diff-index --quiet HEAD || git commit -m "chore: sync hackernoon blogs"
+          git add blog/*.md src/data/latest-posts.json
+          git diff-index --quiet HEAD || git commit -m "chore: sync hackernoon blogs and update index"
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

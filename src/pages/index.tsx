@@ -3,6 +3,8 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+import latestPosts from "../data/latest-posts.json";
+
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -29,18 +31,18 @@ export default function Home(): JSX.Element {
 
         <section className="margin-top--xl">
           <h2>Latest Blog Posts</h2>
-          <div className="listing-item">
-            <Link to="/posts/accelerating-cloud-migration">
-              Accelerating cloud migration using “Terraform Import”
-            </Link>
-            <div className="listing-metadata">July 12, 2024 • 10 min read</div>
-          </div>
-          <div className="listing-item">
-            <Link to="/posts/deploy-and-run-hashicorp-vault">
-              Deploy and Run Hashicorp Vault With TLS Security in AWS
-            </Link>
-            <div className="listing-metadata">July 12, 2024 • 15 min read</div>
-          </div>
+          {latestPosts.map((post) => (
+            <div key={post.slug} className="listing-item">
+              <Link to={`/posts/${post.slug}`}>{post.title}</Link>
+              <div className="listing-metadata">
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </div>
+            </div>
+          ))}
           <Link className="view-all" to="/posts">
             View all posts →
           </Link>
