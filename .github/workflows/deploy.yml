@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 0 * * 0" # Run every Sunday at midnight
+    - cron: "0 0 1,15 * *" # Run on the 1st and 15th of every month
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Python dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests html2text
 
       - name: Sync HackerNoon Blogs
         run: python3 scripts/sync_hackernoon.py

@@ -1,37 +1,47 @@
 import os
-import requests
-from bs4 import BeautifulSoup
 import re
+import xml.etree.ElementTree as ET
 from datetime import datetime
 
-USER_URL = "https://hackernoon.com/u/krishnaduttpanchagnula"
+import html2text
+import requests
+
+RSS_URL = "https://hackernoon.com/u/krishnaduttpanchagnula/feed"
 BLOG_DIR = "blog"
 
+
 def slugify(text):
-    return re.sub(r'[^\w\s-]', '', text).strip().lower().replace(' ', '-')
+    return re.sub(r"[^\w\s-]", "", text).strip().lower().replace(" ", "-")
+
 
 def fetch_blogs():
-    print(f"Fetching blogs from {USER_URL}...")
-    response = requests.get(USER_URL, headers={'User-Agent': 'Mozilla/5.0'})
-    soup = BeautifulSoup(response.text, 'html.parser')
+    print(f"Fetching blogs from RSS: {RSS_URL}...")
+    response = requests.get(RSS_URL, headers={"User-Agent": "Mozilla/5.0"})
+    if response.status_code != 200:
+        print(f"Failed to fetch RSS feed: {response.status_code}")
+        return
 
-    # HackerNoon usually stores articles in <h3> or <a> tags within a specific container
-    articles = soup.find_all('h3')
+    root = ET.fromstring(response.text)
+    items = root.findall(".//item")
 
-    for article in articles:
-        link_tag = article.find('a') if article.name != 'a' else article
-        if not link_tag or 'href' not in link_tag.attrs:
-            continue
+    h = html2text.HTML2Text()
+    h.ignore_links = False
 
-        title = link_tag.text.strip()
-        url = "https://hackernoon.com" + link_tag['href']
+    for item in items:
+        title = item.find("title").text.strip()
+        link = item.find("link").text.strip()
+        pub_date_str = item.find("pubDate").text.strip()
 
-        # Avoid duplicates or non-article links
-        if "/u/" in url or not title:
-            continue
+        # Parse date to YYYY-MM-DD
+        # Example pubDate: Tue, 07 Apr 2026 11:52:49 GMT
+        try:
+            pub_date = datetime.strptime(pub_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+        except ValueError:
+            pub_date = datetime.now()
 
+        date_prefix = pub_date.strftime("%Y-%m-%d")
         slug = slugify(title)
-        filename = f"{datetime.now().strftime('%Y-%m-%d')}-{slug}.md"
+        filename = f"{date_prefix}-{slug}.md"
         filepath = os.path.join(BLOG_DIR, filename)
 
         if os.path.exists(filepath):
@@ -40,17 +50,29 @@ def fetch_blogs():
 
         print(f"Found new blog: {title}. Fetching content...")
         try:
-            art_res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-            art_soup = BeautifulSoup(art_res.text, 'html.parser')
+            art_res = requests.get(link, headers={"User-Agent": "Mozilla/5.0"})
+            # Note: RSS content might be truncated. Fetching the full page for content.
+            # HackerNoon content is usually within a specific structure.
+            # Since full page fetch for SPA might be hard, we'll try to extract what's in the RSS first
+            # but if RSS is full, that's better.
 
-            # Simple extraction - HackerNoon content is usually in a specific div
-            content_div = art_soup.find('div', {'class': 'paragraph'}) or art_soup.find('article')
-            content = content_div.text if content_div else "Content could not be fetched automatically."
+            description = (
+                item.find("description").text
+                if item.find("description") is not None
+                else ""
+            )
+            # If description is just a summary, we might need a better way.
+            # But RSS usually has a good portion.
 
-            with open(filepath, 'w') as f:
-                f.write(f"---\ntitle: \"{title}\"\nslug: {slug}\n---\n\n{content}\n\n*Originally published at [HackerNoon]({url})*")
+            content = h.handle(description)
+
+            with open(filepath, "w") as f:
+                f.write(
+                    f'---\ntitle: "{title}"\nslug: {slug}\ndate: {pub_date.isoformat()}\n---\n\n{content}\n\n*Originally published at [HackerNoon]({link})*'
+                )
         except Exception as e:
-            print(f"Failed to fetch {url}: {e}")
+            print(f"Failed to process {link}: {e}")
+
 
 if __name__ == "__main__":
     if not os.path.exists(BLOG_DIR):

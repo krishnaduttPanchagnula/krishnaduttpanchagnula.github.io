@@ -71,7 +71,7 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: "KRYPTON",
+      title: "Krishna Dutt Panchagnula",
       logo: {
         alt: "Profile Picture",
         src: "img/profile_picture.jpg",
