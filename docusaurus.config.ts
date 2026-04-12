@@ -79,6 +79,7 @@ const config: Config = {
       },
       items: [
         { to: "/posts", label: "Posts", position: "left" },
+        { to: "/#projects", label: "Projects", position: "left" },
         { to: "/about", label: "About", position: "left" },
         {
           href: "https://github.com/krishnaduttpanchagnula",
