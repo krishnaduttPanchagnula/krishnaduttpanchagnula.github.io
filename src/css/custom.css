@@ -1,0 +1,176 @@
+/**
+ * Any CSS included here will be global. The variable names used here
+ * are scope from the Infima framework.
+ *
+ * See: https://infima.dev/docs/getting-started/variables
+ */
+
+:root {
+    --ifm-color-primary: #4ade80;
+    --ifm-color-primary-dark: #37d36d;
+    --ifm-color-primary-darker: #29c762;
+    --ifm-color-primary-darkest: #22a351;
+    --ifm-color-primary-light: #6be497;
+    --ifm-color-primary-lighter: #7de8a3;
+    --ifm-color-primary-lightest: #aef1c3;
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+    --ifm-background-color: #0a0a0a;
+    --ifm-navbar-background-color: #0a0a0a;
+    --ifm-footer-background-color: #0a0a0a;
+    --ifm-font-color-base: #e2e8f0;
+    --ifm-heading-color: #ffffff;
+    --section-title-color: #94a3b8;
+}
+
+/* Force dark mode */
+[data-theme="light"],
+[data-theme="dark"] {
+    --ifm-background-color: #0a0a0a;
+    --ifm-navbar-background-color: #0a0a0a;
+    --ifm-footer-background-color: #0a0a0a;
+    --ifm-font-color-base: #e2e8f0;
+    --ifm-heading-color: #ffffff;
+}
+
+.navbar__brand {
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--section-title-color);
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+}
+
+.navbar {
+    border-bottom: 1px solid #1e293b;
+}
+
+.footer {
+    border-top: 1px solid #1e293b;
+}
+
+/* Blog specific styles */
+.blog-list-page {
+    padding-top: 2rem;
+}
+
+article {
+    margin-bottom: 4rem;
+}
+
+article h2 {
+    border-bottom: none;
+    font-size: 1.8rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--ifm-heading-color);
+    margin-top: 0;
+}
+
+.margin-bottom--xl {
+    margin-bottom: 4rem !important;
+}
+
+.pagination-nav__link {
+    border-color: #1e293b;
+    background-color: transparent;
+}
+
+.pagination-nav__link:hover {
+    border-color: var(--ifm-color-primary);
+}
+
+/* Remove default card styles */
+.card {
+    box-shadow: none;
+    border: 1px solid #1e293b;
+    background: transparent;
+}
+
+/* Metadata style */
+time,
+.reading-time,
+.listing-metadata {
+    font-size: 0.85rem;
+    color: var(--section-title-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--ifm-color-primary);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+pre {
+    background-color: #000 !important;
+    border: 1px solid #1e293b;
+}
+
+/* Homepage specific styles */
+.hero-section {
+    padding: 4rem 0;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--ifm-font-color-base);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.listing-item {
+    margin-bottom: 1.5rem;
+}
+
+.listing-item a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ifm-heading-color);
+}
+
+.listing-item a:hover {
+    color: var(--ifm-color-primary);
+}
+
+.badge-lang {
+    background: #1e293b;
+    color: var(--ifm-color-primary);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    margin-left: 0.5rem;
+}
+
+.view-all {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--section-title-color) !important;
+}
+
+.wave {
+    display: inline-block;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
