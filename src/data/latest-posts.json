@@ -1,5 +1,11 @@
 [
   {
+    "title": "Stop Drawing Your Infrastructure: The Shift to State-Driven Diagrams",
+    "date": "2026-04-22",
+    "slug": "stop-drawing-your-infrastructure-the-shift-to-state-driven-diagrams",
+    "timestamp": 1776816000.0
+  },
+  {
     "title": "Engineering Resilience: A Deep Dive into Chaos Engineering in Distributed Systems",
     "date": "2026-04-07",
     "slug": "engineering-resilience-a-deep-dive-into-chaos-engineering-in-distributed-systems",
@@ -10,11 +16,5 @@
     "date": "2026-03-09",
     "slug": "kill-heroes-build-systems-and-processes",
     "timestamp": 1773014400.0
-  },
-  {
-    "title": "Stop Throwing AI at Broken Systems: Fix Your Engineering Culture First",
-    "date": "2026-02-20",
-    "slug": "stop-throwing-ai-at-broken-systems-fix-your-engineering-culture-first",
-    "timestamp": 1771545600.0
   }
 ]
