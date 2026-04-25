@@ -4,10 +4,18 @@
         <title>Krishnadutt Panchagnula Blog</title>
         <link>https://krishnaduttpanchagnula.github.io/posts</link>
         <description>Krishnadutt Panchagnula Blog</description>
-        <lastBuildDate>Tue, 07 Apr 2026 11:52:29 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 22 Apr 2026 04:57:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Stop Drawing Your Infrastructure: The Shift to State-Driven Diagrams]]></title>
+            <link>https://krishnaduttpanchagnula.github.io/posts/stop-drawing-your-infrastructure-the-shift-to-state-driven-diagrams</link>
+            <guid>https://krishnaduttpanchagnula.github.io/posts/stop-drawing-your-infrastructure-the-shift-to-state-driven-diagrams</guid>
+            <pubDate>Wed, 22 Apr 2026 04:57:16 GMT</pubDate>
+            <description><![CDATA[Originally published at HackerNoon]]></description>
+            <content:encoded><![CDATA[<p><em>Originally published at <a href="https://hackernoon.com/stop-drawing-your-infrastructure-the-shift-to-state-driven-diagrams?source=rss" target="_blank" rel="noopener noreferrer" class="">HackerNoon</a></em></p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Engineering Resilience: A Deep Dive into Chaos Engineering in Distributed Systems]]></title>
             <link>https://krishnaduttpanchagnula.github.io/posts/engineering-resilience-a-deep-dive-into-chaos-engineering-in-distributed-systems</link>
@@ -998,53 +1006,6 @@
             <category>Cloud</category>
             <category>IAC</category>
             <category>Infrastructure</category>
-        </item>
-        <item>
-            <title><![CDATA[Tfblueprintgen: A Tool to Simplify Terraform Folder Setup and Provide Base Resource Modules]]></title>
-            <link>https://krishnaduttpanchagnula.github.io/posts/tfblueprintgen-a-tool-to-simplify-terraform</link>
-            <guid>https://krishnaduttpanchagnula.github.io/posts/tfblueprintgen-a-tool-to-simplify-terraform</guid>
-            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Whether it’s a React front-end app, a Go CLI tool, or a UI design project, there is always initial toil to figure out the optimal folder structure. As this initial decision influences a lot of flexibility, extensibility, self-explanation, and easy maintenance in our projects, it is key decision to ensure a smooth developer experience.]]></description>
-            <content:encoded><![CDATA[<p>Whether it’s a React front-end app, a Go CLI tool, or a UI design project, there is always initial toil to figure out the optimal folder structure. As this initial decision influences a lot of flexibility, extensibility, self-explanation, and easy maintenance in our projects, it is key decision to ensure a smooth developer experience.</p>
-<p>When working with a new tool/technology/framework, our journey typically starts with reading official “getting started” handbook from their official website or even reading some articles on the same topic. We use these resources and start getting our hands dirty with hands-on experience, often using its structure as a foundation for more complex real-world projects. But these articles or tutorials are often serve us good in initial phases of the project, when the complexity is low. When we are solving complex problem involving multiple actors, the legibility and maintainability takes precedence. It becomes a daunting task to later refactor or sometimes rewrite everything from the scratch. To reduce this hassle and tackle this issue head on, I’ve distilled my Terraform experience into a CLI tool. This tool generates a battle-tested folder structure along with basic modules, allowing us to quickly hit the ground running.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="structuring-terraform-folders">Structuring Terraform Folders<a href="https://krishnaduttpanchagnula.github.io/posts/tfblueprintgen-a-tool-to-simplify-terraform#structuring-terraform-folders" class="hash-link" aria-label="Direct link to Structuring Terraform Folders" title="Direct link to Structuring Terraform Folders" translate="no">​</a></h2>
-<p>Most companies and their ops teams find it cumbersome to manage multiple environments across multiple regions for their applications. We can structure our terraform folders as follows:</p>
-<ul>
-<li class="">Folder structure organized by Region</li>
-<li class="">Folder structure by Resources ( like AWS EC2, or Azure Functions etc)</li>
-<li class="">Folder structure on use case ( like front-end app, networking etc)</li>
-<li class="">Folder structure organized by Account</li>
-<li class="">Folder structure organized by environment and</li>
-<li class="">A Hybrid of all the above</li>
-</ul>
-<p>Given the above options it quite becomes confusing to the teams starting with terraform to decide how to structure their projects. Based on my experience here are my 2 cents on how to structure a terraform project:</p>
-<ul>
-<li class="">Create a modular style code with each module containing all the resources required to create for each use-case. These modules would serve as base blueprints which can be utilized across different environments.</li>
-<li class="">For ex: In case of AWS, The front-end module should consist of Cloud-front, S3 bucket, cloud-front origin access control, s3 policy bucket policy and s3 bucket public access block.</li>
-<li class="">Create a folder structure for each of the environments that you are deploying. This statement would be true, if the architecture across all the environments doesn’t change and their deployment strategies does not change.</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="tfblueprintgen-a-terraform-tool-to-generate-folder-structure-and-base-blueprints">Tfblueprintgen: A Terraform tool to generate folder structure and base blueprints<a href="https://krishnaduttpanchagnula.github.io/posts/tfblueprintgen-a-tool-to-simplify-terraform#tfblueprintgen-a-terraform-tool-to-generate-folder-structure-and-base-blueprints" class="hash-link" aria-label="Direct link to Tfblueprintgen: A Terraform tool to generate folder structure and base blueprints" title="Direct link to Tfblueprintgen: A Terraform tool to generate folder structure and base blueprints" translate="no">​</a></h2>
-<p>Based on the above postulates, i have created a CLI tool called Tfblueprintgen, which generates the folder structure along with the modular working blocks to create AWS building blocks. In terms of folder structure, the structure will look something like below.</p>
-<p>Image 1 : Generated Terraform folder structure with base modules</p>
-<p>To run the tool download the both windows and Linux binaries from <a href="https://github.com/krishnaduttPanchagnula/Tfblueprintgen/releases/download/0.1/tfblueprintgen.exe?ref=hackernoon.com" target="_blank" rel="noopener noreferrer" class="">here</a> or you can build your own binary from <a href="https://github.com/krishnaduttPanchagnula/Tfblueprintgen/archive/refs/tags/0.1.zip?ref=hackernoon.com" target="_blank" rel="noopener noreferrer" class="">here</a>. Use the the binary ( if in Windows double-click to run Tfblueprintgen.exe or if it is Linux run the binary using ./Tfblueprintgen)</p>
-<p>Image 2 : Running the tfblueprintgen tool</p>
-<p>As described in the image 1, the tool generates two things:</p>
-<ul>
-<li class="">A Parent folder which contains all the main terraform files ( <a href="http://outputs.tf/?ref=hackernoon.com" target="_blank" rel="noopener noreferrer" class="">outputs.tf</a>, variables<a href="http://providers.tf/?ref=hackernoon.com" target="_blank" rel="noopener noreferrer" class="">.tf</a> and <a href="http://main.tf/?ref=hackernoon.com" target="_blank" rel="noopener noreferrer" class="">main.tf</a> )for each environment separated in their own folders.</li>
-<li class="">A Module folder which contains all the different basic resources, segregated in their own separate folders.</li>
-</ul>
-<p>These modules can be leveraged within each of the environment folders, by calling those modules using module block and these can be applied using “terraform apply”</p>
-<p>With this setup, you can hit the ground up and running in no time. Feel free to add more ideas as issues and Stay tuned to project.</p>
-<p>Liked my content ? Feel free to reach out to my <a href="https://www.linkedin.com/in/krishnadutt/" target="_blank" rel="noopener noreferrer" class="">LinkedIn</a> for interesting content and productive discussions.</p>]]></content:encoded>
-            <category>Golang</category>
-            <category>Go</category>
-            <category>IAC</category>
-            <category>CLI</category>
-            <category>AWS</category>
-            <category>Cloud</category>
-            <category>Terraform</category>
-            <category>Automation</category>
-            <category>Best Practices</category>
         </item>
     </channel>
 </rss>
